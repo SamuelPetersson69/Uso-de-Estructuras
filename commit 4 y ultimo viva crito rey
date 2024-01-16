@@ -1,0 +1,86 @@
+#include <stdio.h>
+
+// esto define la estructura del alumno dandole datos relacionados con los nombres
+struct alumno {
+    int matricula;           // Número de identificación del estudiante
+    char nombre[50];         // Nombre del estudiante
+    char direccion[50];      // Dirección del estudiante
+    char carrera[50];        // Carrera que está cursando el estudiante
+    float promedio;          // Promedio académico del estudiante
+};
+
+// estos serian funciones es como prototipod por no decirlo directamente
+void ingresarAlumno(struct alumno *alumno);
+void mostrarAlumno(const struct alumno *alumno);
+
+int main() {
+    int n;
+
+   // esto pide el numero de los alunos de toda la vida
+    printf("Ingrese el número de alumnos: ");
+    scanf("%d", &n);
+
+   // esto arregla estructuras de alumno para que imprima bien facha xD
+    struct alumno alumnos[n];
+
+    // Ingresar los datos de cada alumno
+    for (int i = 0; i < n; ++i) {
+        printf("\nIngrese los datos para el alumno %d:\n", i + 1);
+        ingresarAlumno(&alumnos[i]);
+    }
+
+    // con esto ingresa las datos del futuro licenciado
+    printf("\nDatos de los alumnos ingresados:\n");
+    for (int i = 0; i < n; ++i) {
+        mostrarAlumno(&alumnos[i]);
+    }
+
+    return 0;
+}
+
+// y esto en ves de ingresarlo lo muestra fua que complicado hacerlo.
+void ingresarAlumno(struct alumno *alumno) {
+    // Solicitar y leer la matrícula del alumno
+    printf("Matricula: ");
+    scanf("%d", &alumno->matricula);
+
+    // esto limpia el bufer ¿que es el bufer? en resumen es una zona de memoria temporal y ya.
+    while ((getchar()) != '\n');
+
+    // esta wea solicita el nombre del alumno con el fgets() al parecer segun gogle resumen, gets() no se utiliza debido a sus problemas de seguridad, y fflush(stdin) se evita por su comportamiento no definido en la limpieza de búfer de entrada
+    printf("Nombre: ");
+    fgets(alumno->nombre, sizeof(alumno->nombre), stdin);
+
+    //esta wea Solicita y lee la dirección del alumno usando fgets()
+    printf("Dirección: ");
+    fgets(alumno->direccion, sizeof(alumno->direccion), stdin);
+
+    // esto Solicita y lee la carrera del alumno usando fgets()
+    printf("Carrera: ");
+    fgets(alumno->carrera, sizeof(alumno->carrera), stdin);
+
+    // aqui lo mismo pero con el promedio
+    printf("Promedio: ");
+    scanf("%f", &alumno->promedio);
+}
+
+// otra funcion  para mostrar los datos de un alumno
+void mostrarAlumno(const struct alumno *alumno) {
+    // Mostrar la matrícula del alumno
+    printf("\nMatricula: %d\n", alumno->matricula);
+
+    // esto muestra el nombre del mocoso usando puts()
+    printf("Nombre: ");
+    puts(alumno->nombre);
+
+    // aqui lo mismo pero con la direccion del futuro licenciado
+    printf("Dirección: ");
+    puts(alumno->direccion);
+
+    // aqui lo mismo pero con la carrera de nuevo usando puts por cierto pust sirve para imprimir una cadena de caracteres bastante fachero.
+    printf("Carrera: ");
+    puts(alumno->carrera);
+
+    // y esto simplemente lo imprime aqui si requeri ayuda de verdad
+    printf("Promedio: %.2f\n", alumno->promedio);
+}
