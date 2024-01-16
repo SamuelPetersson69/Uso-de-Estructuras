@@ -1,0 +1,41 @@
+#include <stdio.h>
+
+// esto define la estructura del alumno dandole datos relacionados con los nombres
+struct alumno {
+    int matricula;           // Número de identificación del estudiante
+    char nombre[50];         // Nombre del futuro licenciado
+    char direccion[50];      // Dirección del mocoso
+    char carrera[50];        // Carrera universitario? (pence que era escuela pero ya nada a modificar el codigo)
+    float promedio;          // Promedio del joven
+};
+
+// estos serian funciones es como prototipod por no decirlo directamente
+void ingresarAlumno(struct alumno *alumno);
+void mostrarAlumno(const struct alumno *alumno);
+
+int main() {
+    int n;
+
+    // esto pide el numero de los alunos de toda la vida
+    printf("Ingrese el número de alumnos: ");
+    scanf("%d", &n);
+
+    // esto arregla estructuras de alumno para que imprima bien facha xD
+    struct alumno alumnos[n];
+
+    // con esto ingresa las datos del futuro licenciado
+    for (int i = 0; i < n; ++i) {
+        printf("\nIngrese los datos para el alumno %d:\n", i + 1);
+        ingresarAlumno(&alumnos[i]);
+    }
+
+    // y esto en ves de ingresarlo lo muestra fua que complicado hacerlo.
+    printf("\nDatos de los alumnos ingresados:\n");
+    for (int i = 0; i < n; ++i) {
+        mostrarAlumno(&alumnos[i]);
+    }
+
+    return 0;
+}
+
+
