@@ -1,0 +1,14 @@
+#include <stdio.h>
+
+// esto define la estructura del alumno dandole datos relacionados con los nombres
+struct alumno {
+    int matricula;
+    char nombre[50];
+    char direccion[50];
+    char carrera[50];
+    float promedio;
+};
+
+// estos serian funciones es como prototipod por no decirlo directamente
+void ingresarAlumno(struct alumno *alumno);
+void mostrarAlumno(const struct alumno *alumno);
